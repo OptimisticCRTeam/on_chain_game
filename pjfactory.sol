@@ -111,16 +111,4 @@ contract PjFactory {
         randId = randId - (randId % 100);
         _createNewPj(_name, randId, _class);
     }
-
-    function getZombiesByOwner() external view returns (Pj[] memory) {
-        Pj[] memory result = new Pj[](ownerPjCount[msg.sender]);
-        uint counter = 0;
-        for (uint i = 0; i < pjs.length; i++) {
-            if (pjToOwner[i] == msg.sender) {
-                result[counter] = pjs[i];
-                counter++;
-            }
-        }
-        return result;
-    }
 }
