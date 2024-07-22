@@ -6,7 +6,7 @@ import "./pjfactory.sol";
 contract PjHelper is PjFactory {
     uint randNonce = 0;
 
-    function getZombiesByOwner() external view returns (Pj[] memory) {
+    function getPjByOwner() external view returns (Pj[] memory) {
         Pj[] memory result = new Pj[](ownerPjCount[msg.sender]);
         uint counter = 0;
         for (uint i = 0; i < pjs.length; i++) {
