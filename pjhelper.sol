@@ -6,7 +6,12 @@ import "./pjfactory.sol";
 contract PjHelper is PjFactory {
     uint randNonce = 0;
 
-    function getPjByOwner() external view returns (Pj[] memory) {
+    modifier onlyOwnerOf(uint _pjId) {
+        require(msg.sender == pjToOwner[_pjId]);
+        _;
+    }
+
+    function getPjsByOwner() external view returns (Pj[] memory) {
         Pj[] memory result = new Pj[](ownerPjCount[msg.sender]);
         uint counter = 0;
         for (uint i = 0; i < pjs.length; i++) {
