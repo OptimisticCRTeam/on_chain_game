@@ -1,7 +1,5 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.26;
-//import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
-// import "@openzeppelin/contracts/access/Ownable.sol";
 contract PjFactory {
     uint idDigits = 5;
     uint idModulus = 10 ** idDigits;
@@ -65,7 +63,7 @@ contract PjFactory {
         pjs.push(myPj);
         pjToOwner[pjs.length - 1] = msg.sender;
         ownerPjCount[msg.sender]++;
-        //emit NewZombie(id, _name, _dna);
+        //emit NewPJ
     }
 
     function _calculateBasePjValues(
@@ -106,7 +104,7 @@ contract PjFactory {
         string calldata _name,
         string calldata _class
     ) external validClass(_class) {
-        //require(ownerZombieCount[msg.sender] == 0);
+        //require(ownerPjCount[msg.sender] == 0);
         uint randId = _generateRandomId(_name);
         randId = randId - (randId % 100);
         _createNewPj(_name, randId, _class);
