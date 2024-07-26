@@ -1,6 +1,3 @@
 {
-  "LockModule#Lock": "0xB1caf93880cB0C4003151D27BA360fb5F9377622",
-  "AddressStorageModule#AddressStorage": "0x2FEF90166191e9aF7349b714145bb14F09c96F3C",
-  "NFTModule#MyToken": "0x9AE7746598bf16b927A7aC1841242415Ca8acCaa",
-  "PjOwnershipModule#PjOwnership": "0xfa73a94d132DeC96401FcC220B9c9cfC3FafD8AD"
+  "BattleModule#Battle": "0x05C0216a2026d61AFA4dF5Faa8E2470e7cC7DE34"
 }
