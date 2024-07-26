@@ -2,8 +2,9 @@
 pragma solidity ^0.8.26;
 
 import "./pjhelper.sol";
+import "./pjownership.sol";
 
-contract Battle is PjHelper {
+contract Battle is PjHelper, PjOwnership {
     function battle(uint pj1_id, uint pj2_id) external onlyOwnerOf(pj1_id) {
         //Get PJ's based on id
         Pj memory pj1 = pjs[pj1_id];
@@ -27,8 +28,8 @@ contract Battle is PjHelper {
                     pj2Hp -= damage;
                 }
             } else {
-                // Pj1 attacks Pj2
-                uint128 damage = _calculateDamage(pj1, pj2);
+                // Pj2 attacks Pj1
+                uint128 damage = _calculateDamage(pj2, pj1);
                 if (damage >= pj1Hp) {
                     pj1Hp = 0;
                 } else {
@@ -43,11 +44,13 @@ contract Battle is PjHelper {
         Pj memory _attacker,
         Pj memory _defender
     ) private returns (uint128) {
-        uint hit_chance = (_attacker.agilityPoints /
-            (_attacker.agilityPoints + _defender.attackPoints)) * 100; //We need here to do that division with float
+        uint hit_chance = ((_attacker.agilityPoints * 1000) /
+            (_attacker.agilityPoints + _defender.attackPoints));
         int128 damage = 0;
         if (_randomNumber() <= hit_chance) {
-            damage = int128(_attacker.attackPoints - _defender.defensePoints);
+            damage =
+                int128(_attacker.attackPoints) -
+                int128(_defender.defensePoints);
             if (damage < 0) {
                 damage = 1;
             }
