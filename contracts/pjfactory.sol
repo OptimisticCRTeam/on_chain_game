@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.26;
+
 contract PjFactory {
     uint idDigits = 5;
     uint idModulus = 10 ** idDigits;
