@@ -1,2 +1,13 @@
-# On Chain Game
-<!--Un sistema de votación seguro, transparente y descentralizado usando blockchain para prevenir fraudes. Utiliza contratos inteligentes en Solidity para garantizar la integridad del proceso electoral, permitiendo elecciones libres de manipulación. Incluye verificación de identidad, privacidad, asegurando votos legítimos y verificables públicamente-->
+# Sample Hardhat Project
+
+This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, and a Hardhat Ignition module that deploys that contract.
+
+Try running some of the following tasks:
+
+```shell
+npx hardhat help
+npx hardhat test
+REPORT_GAS=true npx hardhat test
+npx hardhat node
+npx hardhat ignition deploy ./ignition/modules/Lock.js
+```

@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.26;
+
 contract PjFactory {
     uint idDigits = 5;
     uint idModulus = 10 ** idDigits;
@@ -78,20 +79,20 @@ contract PjFactory {
             keccak256(abi.encodePacked((_class))) ==
             keccak256(abi.encodePacked(("Defense")))
         ) {
-            hp = 50;
+            hp = 15;
             attackPoints = 5;
-            defensePoints = 10;
+            defensePoints = 15;
             agilePoints = 7;
         } else if (
             keccak256(abi.encodePacked((_class))) ==
             keccak256(abi.encodePacked(("Attack")))
         ) {
-            hp = 42;
+            hp = 12;
             attackPoints = 10;
             defensePoints = 7;
             agilePoints = 5;
         } else {
-            hp = 60;
+            hp = 10;
             attackPoints = 7;
             defensePoints = 8;
             agilePoints = 14;

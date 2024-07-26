@@ -7,7 +7,7 @@ contract PjHelper is PjFactory {
     uint randNonce = 0;
 
     modifier onlyOwnerOf(uint _pjId) {
-        require(msg.sender == pjToOwner[_pjId]);
+        require(msg.sender == pjToOwner[_pjId], "Not owner");
         _;
     }
 
@@ -30,6 +30,6 @@ contract PjHelper is PjFactory {
                 keccak256(
                     abi.encodePacked(block.timestamp, msg.sender, randNonce)
                 )
-            ) % 100;
+            ) % 1000;
     }
 }
