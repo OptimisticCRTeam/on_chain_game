@@ -10,10 +10,8 @@ contract PjOwnership is PjHelper, IERC721 {
         return ownerPjCount[_owner];
     }
 
-    function approve(
-        address _to,
-        uint256 _tokenId
-    ) external onlyOwnerOf(_tokenId) {
+    function approve(address _to,uint256 _tokenId
+    ) public onlyOwnerOf(_tokenId) {
         pjApprovals[_tokenId] = _to;
         emit Approval(msg.sender, _to, _tokenId);
     }
@@ -25,7 +23,7 @@ contract PjOwnership is PjHelper, IERC721 {
     }
 
     function ownerOf(uint256 _tokenId) external view returns (address owner) {
-        return pjToOwner[_tokenId];
+        return _pjToOwner[_tokenId];
     }
 
     function transferFrom(
@@ -34,7 +32,7 @@ contract PjOwnership is PjHelper, IERC721 {
         uint256 _tokenId
     ) external {
         require(
-            pjToOwner[_tokenId] == msg.sender ||
+            _pjToOwner[_tokenId] == msg.sender ||
                 pjApprovals[_tokenId] == msg.sender
         );
         _transfer(_from, _to, _tokenId);
@@ -43,7 +41,12 @@ contract PjOwnership is PjHelper, IERC721 {
     function _transfer(address _from, address _to, uint256 _tokenId) private {
         ownerPjCount[_to]++;
         ownerPjCount[_from]--;
-        pjToOwner[_tokenId] = _to;
+        _pjToOwner[_tokenId] = _to;
+        if (pjApprovals[_tokenId] == msg.sender) //The user approved can transfer the token once
+        {
+            pjApprovals[_tokenId] = address(0);
+        }
         emit Transfer(_from, _to, _tokenId);
     }
 }
+
