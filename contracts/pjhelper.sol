@@ -7,7 +7,7 @@ contract PjHelper is PjFactory {
     uint randNonce = 0;
 
     modifier onlyOwnerOf(uint _pjId) {
-        require(msg.sender == pjToOwner[_pjId], "Not owner");
+        require(msg.sender == _pjToOwner[_pjId], "Not owner");
         _;
     }
 
@@ -15,7 +15,7 @@ contract PjHelper is PjFactory {
         Pj[] memory result = new Pj[](ownerPjCount[msg.sender]);
         uint counter = 0;
         for (uint i = 0; i < pjs.length; i++) {
-            if (pjToOwner[i] == msg.sender) {
+            if (_pjToOwner[i] == msg.sender) {
                 result[counter] = pjs[i];
                 counter++;
             }
