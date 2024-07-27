@@ -11,3 +11,4 @@ REPORT_GAS=true npx hardhat test
 npx hardhat node
 npx hardhat ignition deploy ./ignition/modules/Lock.js
 ```
+Current smart contract: https://sepolia-optimism.etherscan.io/address/0x12692547486BA9e90854DeC7554bFfAa124ea117#code
