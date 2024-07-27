@@ -17,7 +17,7 @@ contract PjFactory {
     }
     Pj[] public pjs;
 
-    mapping(uint => address) public pjToOwner;
+    mapping(uint => address) internal _pjToOwner;
     mapping(address => uint) ownerPjCount;
 
     modifier validClass(string calldata _class) {
@@ -62,7 +62,7 @@ contract PjFactory {
             _agilePoints
         );
         pjs.push(myPj);
-        pjToOwner[pjs.length - 1] = msg.sender;
+        _pjToOwner[pjs.length - 1] = msg.sender;
         ownerPjCount[msg.sender]++;
         //emit NewPJ
     }
@@ -111,3 +111,4 @@ contract PjFactory {
         _createNewPj(_name, randId, _class);
     }
 }
+
