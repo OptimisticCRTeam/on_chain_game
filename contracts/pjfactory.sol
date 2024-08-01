@@ -7,7 +7,7 @@ contract PjFactory {
 
     struct Pj {
         uint id;
-        string rol;
+        string class;
         string name;
         uint128 hp;
         uint128 level;
@@ -111,4 +111,3 @@ contract PjFactory {
         _createNewPj(_name, randId, _class);
     }
 }
-

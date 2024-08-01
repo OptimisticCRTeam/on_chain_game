@@ -23,7 +23,9 @@ contract Battle is PjHelper, PjOwnership {
                 // Pj1 attacks Pj2
                 uint128 damage = _calculateDamage(pj1, pj2);
                 if (damage >= pj2Hp) {
+                    // Pj1 Won Battle
                     pj2Hp = 0;
+                    _wonBattle(pj1_id);
                 } else {
                     pj2Hp -= damage;
                 }
@@ -31,7 +33,9 @@ contract Battle is PjHelper, PjOwnership {
                 // Pj2 attacks Pj1
                 uint128 damage = _calculateDamage(pj2, pj1);
                 if (damage >= pj1Hp) {
+                    // Pj1 Won Battle
                     pj1Hp = 0;
+                    _wonBattle(pj2_id);
                 } else {
                     pj1Hp -= damage;
                 }
@@ -56,5 +60,34 @@ contract Battle is PjHelper, PjOwnership {
             }
         }
         return uint128(damage);
+    }
+
+    function _wonBattle(uint _pj_id) private {
+        Pj memory pj = pjs[_pj_id];
+        pj.level++;
+        if (
+            keccak256(abi.encodePacked((pj.class))) ==
+            keccak256(abi.encodePacked(("Attack")))
+        ) {
+            pj.hp = pj.hp + 3;
+            pj.attackPoints = pj.attackPoints + 3;
+            pj.defensePoints = pj.defensePoints + 2;
+            pj.agilityPoints = pj.agilityPoints + 1;
+        } else if (
+            keccak256(abi.encodePacked((pj.class))) ==
+            keccak256(abi.encodePacked(("Defense")))
+        ) {
+            pj.hp = pj.hp + 2;
+            pj.attackPoints = pj.attackPoints + 2;
+            pj.defensePoints = pj.defensePoints + 3;
+            pj.agilityPoints = pj.agilityPoints + 1;
+        } else {
+            pj.hp = pj.hp + 5;
+            pj.attackPoints = pj.attackPoints + 2;
+            pj.defensePoints = pj.defensePoints + 1;
+            pj.agilityPoints = pj.agilityPoints + 3;
+        }
+
+        pjs[_pj_id] = pj;
     }
 }

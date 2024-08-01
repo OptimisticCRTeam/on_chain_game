@@ -11,6 +11,7 @@ module.exports = {
     optimismSepolia: {
       url: `https://opt-sepolia.g.alchemy.com/v2/${OP_SEPOLIA_ALCHEMY_RPC}`,
       accounts: [WALLET_PRIVATE_KEY],
+      blockGasLimit: 500000
     },
   },
   etherscan: {
