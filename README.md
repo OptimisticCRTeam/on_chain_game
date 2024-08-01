@@ -60,7 +60,7 @@ We are excited about these future developments and believe they will significant
 
 ## Smart contract 💻
 
-Current smart contract: https://sepolia-optimism.etherscan.io/address/0x12692547486BA9e90854DeC7554bFfAa124ea117#code
+Current smart contract: https://sepolia-optimism.etherscan.io/address/0xe12b48502dCFe0F24208F90F62327D8B2A49f301#readContract
 
 <!--
 # Sample Hardhat Project
